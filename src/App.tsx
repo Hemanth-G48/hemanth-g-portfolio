@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { 
   Github, Linkedin, Mail, ExternalLink, Terminal, Shield, 
-  Code, Cpu, Globe, Lock, Zap, Award, Calendar,
+  Code, Cpu, Globe, Zap, Award, Calendar,
   MapPin, Target, ChevronDown, Menu, X,
-  Bug, FileCode, Network, Send, GraduationCap, Download
+  Bug, FileCode, Network, Send, GraduationCap, Download,
+  BookOpen, FileText
 } from 'lucide-react';
 
 // Animation variants
@@ -46,7 +47,7 @@ function Navigation() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
       
-      const sections = ['hero', 'about', 'skills', 'projects', 'hackathons', 'education', 'certifications', 'methodology', 'contact'];
+      const sections = ['hero', 'about', 'certifications', 'skills', 'projects', 'research', 'hackathons', 'education', 'contact'];
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
@@ -66,12 +67,12 @@ function Navigation() {
   const navLinks = [
     { href: '#hero', label: 'Home' },
     { href: '#about', label: 'About' },
+    { href: '#certifications', label: 'Certs' },
     { href: '#skills', label: 'Skills' },
     { href: '#projects', label: 'Projects' },
+    { href: '#research', label: 'Research' },
     { href: '#hackathons', label: 'Experience' },
     { href: '#education', label: 'Education' },
-    { href: '#certifications', label: 'Certs' },
-    { href: '#methodology', label: 'Methodology' },
     { href: '#contact', label: 'Contact' },
   ];
 
@@ -210,10 +211,6 @@ function HeroSection() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10 relative">
         <motion.div variants={staggerContainer} initial="hidden" animate="visible">
-          <motion.p variants={fadeInUp} className="text-[#00ff41] font-mono text-xs sm:text-sm mb-4 tracking-widest">
-            CYBERSECURITY PROFESSIONAL
-          </motion.p>
-          
           <motion.h1 variants={fadeInUp} className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 tracking-tight">
             <span className="text-[#00ff41]">&lt;</span>Gundu Hemanth<span className="text-[#00ff41]">/&gt;</span>
           </motion.h1>
@@ -441,7 +438,43 @@ function ProjectsSection() {
     outcome: string;
     githubUrl: string;
     liveUrl?: string;
-  }> = [];
+    inProgress?: boolean;
+  }> = [
+    {
+      title: 'Cortex',
+      type: 'In Progress',
+      typeColor: '#ffd93d',
+      description: 'A productivity application that helps students manage their academic and personal life in one place. It pairs a FastAPI backend with a React + TypeScript + Vite frontend, and is built around a powerful local-first Second Brain that ingests notes, documents, and course materials, embeds them offline with fastembed, and makes them searchable through semantic (vector) search, a knowledge graph, and AI tutoring.',
+      objective: 'Build a personal study companion that remembers everything you feed it and helps you connect ideas, revise, and learn.',
+      methodology: ['Courses & timetable tracking plus task/life management (Eisenhower matrix, daily logs, goal tracking)', 'Pomodoro focus sessions and an RPG system (quests, missions, rewards) to gamify productivity', 'Local-first Second Brain: ingest Markdown/PDFs, embed offline with fastembed, then search via vector store, knowledge graph, AI tutoring, and spaced-repetition flashcards'],
+      tools: ['React', 'TypeScript', 'Vite', 'FastAPI', 'fastembed', 'Python'],
+      outcome: 'Ongoing development — a local-first study companion combining semantic search, a knowledge graph, and AI tutoring.',
+      githubUrl: 'https://github.com/Hemanth-G48/Cortex',
+      inProgress: true
+    },
+    {
+      title: 'Aegis',
+      type: 'AI Security Tool',
+      typeColor: '#00ff41',
+      description: 'An AI-powered red-teaming tool that uses multi-turn adversarial conversations to evaluate the safety of large language models (LLMs). Aegis employs a trust-vector-driven state machine with configurable drift strategies to systematically test model guardrails.',
+      objective: 'Systematically evaluate LLM guardrails using a trust-vector-driven state machine across configurable drift strategies.',
+      methodology: ['Context Priming — establish a conversational persona to build trust with the target model', 'Adversarial Drift Engineering — gradually steer the conversation toward the test objective', 'Compromise Module — attempt to elicit the target model to fulfill the objective', 'Dual-judge evaluation: internal multi-bucket LLM classifier + HarmBench-compatible JBB judge'],
+      tools: ['Python', 'sentence-transformers', 'spaCy', 'LLM APIs', 'Groq'],
+      outcome: 'A working red-teaming harness for evaluating LLM safety against multi-turn jailbreaking attacks.',
+      githubUrl: 'https://github.com/Hemanth-G48/Aegis'
+    },
+    {
+      title: 'Portfolio Website',
+      type: 'Web Dev',
+      typeColor: '#00d9ff',
+      description: 'A cyberpunk-themed personal portfolio showcasing projects, certifications, and skills in cybersecurity.',
+      objective: 'Create an interactive and visually striking portfolio to present professional work and achievements.',
+      methodology: ['Responsive design with mobile-first approach', 'Smooth animations and terminal-inspired UI', 'Performance optimized with modern React'],
+      tools: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
+      outcome: 'Launched a fully responsive portfolio site with dynamic navigation and interactive sections.',
+      githubUrl: 'https://github.com/Hemanth-G48/hemanth-g-portfolio'
+    }
+  ];
 
   // TODO: Add your projects here. Each project should follow this structure:
   // {
@@ -841,7 +874,8 @@ function CertificationsSection() {
       year: 'June 2026',
       type: 'Verified',
       typeColor: '#00ff41',
-      icon: Shield
+      icon: Shield,
+      credentialUrl: 'https://certs.ine.com/d4506dc5-30df-4db2-9096-4fe6e0217303#acc.yo54BaQ6'
     }
   ];
 
@@ -874,85 +908,69 @@ function CertificationsSection() {
                 key={index}
                 variants={fadeInUp}
                 whileHover={{ x: 5, transition: { duration: 0.2 } }}
-                className="bg-[#1a1a1a] border border-gray-800 rounded-xl p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 hover:border-opacity-50 transition-all"
+                className="bg-[#1a1a1a] border border-gray-800 rounded-xl p-5 sm:p-6 flex flex-col gap-3 sm:gap-4 hover:border-opacity-50 transition-all"
               >
-                <div className="flex items-center gap-3 sm:gap-4">
-                  <div 
-                    className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center flex-shrink-0"
-                    style={{ backgroundColor: `${cert.typeColor}15` }}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
+                  <div className="flex items-center gap-3 sm:gap-4">
+                    <div 
+                      className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center flex-shrink-0"
+                      style={{ backgroundColor: `${cert.typeColor}15` }}
+                    >
+                      <cert.icon className="w-6 h-6 sm:w-7 sm:h-7" style={{ color: cert.typeColor }} />
+                    </div>
+                    <div>
+                      <h3 className="text-base sm:text-lg font-bold text-white">{cert.title}</h3>
+                      <p className="text-xs sm:text-sm text-gray-400 font-mono">{cert.issuer} • {cert.year}</p>
+                    </div>
+                  </div>
+                  <span 
+                    className="px-3 py-1.5 rounded text-xs sm:text-sm font-mono w-fit"
+                    style={{ backgroundColor: `${cert.typeColor}20`, color: cert.typeColor }}
                   >
-                    <cert.icon className="w-6 h-6 sm:w-7 sm:h-7" style={{ color: cert.typeColor }} />
-                  </div>
-                  <div>
-                    <h3 className="text-base sm:text-lg font-bold text-white">{cert.title}</h3>
-                    <p className="text-xs sm:text-sm text-gray-400 font-mono">{cert.issuer} • {cert.year}</p>
-                  </div>
+                    {cert.type}
+                  </span>
                 </div>
-                <span 
-                  className="px-3 py-1.5 rounded text-xs sm:text-sm font-mono w-fit"
-                  style={{ backgroundColor: `${cert.typeColor}20`, color: cert.typeColor }}
-                >
-                  {cert.type}
-                </span>
+                {cert.credentialUrl && (
+                  <a
+                    href={cert.credentialUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm font-mono text-[#00d9ff] hover:text-[#00ff41] transition-colors w-fit"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    See Credential
+                  </a>
+                )}
               </motion.div>
             ))}
           </motion.div>
 
-          {/* Learning Philosophy */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-8 sm:mt-12 bg-gradient-to-r from-[#1a1a1a] to-[#111111] border border-gray-800 rounded-xl p-5 sm:p-8"
-          >
-            <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 text-[#00ff41] flex items-center gap-2">
-              <Zap className="w-5 h-5 sm:w-6 sm:h-6" />
-              Continuous Learning Philosophy
-            </h3>
-            <p className="text-gray-400 leading-relaxed mb-3 sm:mb-4 text-sm sm:text-base">
-              Cybersecurity is a rapidly evolving field that demands continuous skill development. I maintain
-              an active learning routine through:
-            </p>
-            <motion.ul 
-              className="space-y-2 text-gray-400"
-              variants={staggerContainer}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-            >
-              {[
-                'Daily engagement with security research, CVE analysis, and proof-of-concept development',
-                'Active participation in Hack The Box, TryHackMe, and private bug bounty programs',
-                'Building custom vulnerable applications to understand exploitation from both offensive and defensive perspectives',
-                'Contributing to open-source security tools and sharing knowledge with the community'
-              ].map((item, index) => (
-                <motion.li key={index} variants={fadeInUp} className="flex items-start text-sm sm:text-base">
-                  <span className="text-[#00ff41] mr-2 sm:mr-3 flex-shrink-0">▹</span>
-                  <span>{item}</span>
-                </motion.li>
-              ))}
-            </motion.ul>
-          </motion.div>
         </div>
       </div>
     </section>
   );
 }
 
-// Methodology Section
-function MethodologySection() {
-  const steps = [
-    { number: '01', title: 'Pre-Engagement & Scoping', description: 'Establish clear scope, rules of engagement, and authorization. Define testing windows, out-of-scope systems, and communication protocols.', color: '#00ff41' },
-    { number: '02', title: 'Intelligence Gathering', description: 'Passive and active reconnaissance to map attack surface. Collect information on technologies, endpoints, personnel, and potential entry points.', color: '#00d9ff' },
-    { number: '03', title: 'Vulnerability Assessment', description: 'Systematic identification of security weaknesses using automated scanners, manual testing, and custom tooling.', color: '#ff3864' },
-    { number: '04', title: 'Exploitation', description: 'Controlled exploitation of identified vulnerabilities to demonstrate real-world risk while maintaining detailed logs and evidence.', color: '#00ff41' },
-    { number: '05', title: 'Post-Exploitation & Privilege Escalation', description: 'Assess the depth of compromise by attempting lateral movement, privilege escalation, and persistent access.', color: '#00d9ff' },
-    { number: '06', title: 'Reporting & Remediation', description: 'Deliver comprehensive reports with executive summaries and technical details. Include CVSS scoring and prioritized remediation recommendations.', color: '#ff3864' }
+
+
+// Ongoing Research Section
+function ResearchSection() {
+  const papers = [
+    {
+      title: 'Steering Dialogue Dynamics for Robustness against Multi-turn Jailbreaking Attacks',
+      authors: 'Hanjiang Hu, Alexander Robey, Changliu Liu',
+      venue: 'arXiv:2503.00187',
+      pdfUrl: '/nbf-safety-steering.pdf',
+      paperUrl: 'https://doi.org/10.48550/arXiv.2503.00187',
+      status: 'Reading & Reviewing',
+      statusColor: '#ffd93d',
+      description: 'Investigates how multi-turn conversational dynamics can be steered to make LLMs robust against iterative jailbreaking attacks — directly relevant to my work on Aegis (LLM red-teaming) and AI guardrail evaluation.',
+      takeaway: 'Informs my approach to trust-vector drift and dual-judge evaluation when stress-testing model safety.'
+    }
   ];
 
   return (
-    <section id="methodology" className="py-16 sm:py-20 lg:py-24 bg-[#111111]">
+    <section id="research" className="py-16 sm:py-20 lg:py-24 bg-[#111111]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -962,88 +980,90 @@ function MethodologySection() {
           className="text-center mb-10 sm:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-[#ff3864]">//</span> Methodology & Ethics
+            <span className="text-[#ff3864]">//</span> Ongoing Research
           </h2>
           <div className="w-20 sm:w-24 h-1 bg-[#ff3864] mx-auto mb-3 sm:mb-4" />
           <p className="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base px-4">
-            A structured, repeatable approach grounded in industry standards and ethical responsibility
+            Papers and problems I&apos;m actively reading, reviewing, and applying to AI security research
           </p>
         </motion.div>
 
-        <div className="max-w-5xl mx-auto">
-          <motion.div 
-            className="space-y-3 sm:space-y-4 mb-8 sm:mb-12"
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            {steps.map((step, index) => (
-              <motion.div
-                key={index}
-                variants={fadeInUp}
-                whileHover={{ x: 10, transition: { duration: 0.2 } }}
-                className="bg-[#1a1a1a] border-l-4 rounded-lg p-4 sm:p-6"
-                style={{ borderLeftColor: step.color }}
-              >
-                <div className="flex items-center mb-2 sm:mb-3">
-                  <span className="text-xl sm:text-2xl font-bold mr-3 sm:mr-4 font-mono" style={{ color: step.color }}>{step.number}</span>
-                  <h3 className="text-lg sm:text-xl font-semibold text-white">{step.title}</h3>
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          {papers.map((paper, index) => (
+            <motion.div
+              key={index}
+              variants={fadeInUp}
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
+              className="research-card bg-[#1a1a1a] border border-gray-800 rounded-xl p-5 sm:p-6 flex flex-col"
+            >
+              <div className="flex items-start justify-between gap-3 mb-3 sm:mb-4">
+                <div className="flex items-center gap-2 text-[#00ff41]">
+                  <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" />
+                  <span
+                    className="px-2 sm:px-3 py-1 rounded text-xs sm:text-sm font-mono"
+                    style={{ backgroundColor: `${paper.statusColor}20`, color: paper.statusColor }}
+                  >
+                    {paper.status}
+                  </span>
                 </div>
-                <p className="text-gray-400 text-sm sm:text-base ml-0 sm:ml-12">{step.description}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border-2 border-[#ff3864] rounded-xl p-5 sm:p-8"
-          >
-            <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-[#ff3864] flex items-center gap-2 sm:gap-3">
-              <Lock className="w-6 h-6 sm:w-8 sm:h-8" />
-              Ethical Commitment
-            </h3>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-              <div>
-                <h4 className="font-semibold text-[#00ff41] mb-2 sm:mb-3 terminal-line text-sm sm:text-base">Legal Boundaries</h4>
-                <ul className="space-y-1.5 sm:space-y-2 text-gray-400 text-xs sm:text-sm">
-                  {['All testing conducted with explicit written authorization', 'Strict adherence to defined scope and testing windows', 'Compliance with relevant laws and regulations'].map((item, i) => (
-                    <li key={i} className="flex items-start">
-                      <span className="text-[#00ff41] mr-2 flex-shrink-0">✓</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
+                <span className="text-xs sm:text-sm font-mono text-gray-400 flex-shrink-0">{paper.venue}</span>
               </div>
 
-              <div>
-                <h4 className="font-semibold text-[#00d9ff] mb-2 sm:mb-3 terminal-line text-sm sm:text-base">Professional Integrity</h4>
-                <ul className="space-y-1.5 sm:space-y-2 text-gray-400 text-xs sm:text-sm">
-                  {['Confidentiality of client data and findings', 'Transparent communication about risks and limitations', 'Responsible disclosure of vulnerabilities'].map((item, i) => (
-                    <li key={i} className="flex items-start">
-                      <span className="text-[#00d9ff] mr-2 flex-shrink-0">✓</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+              <h3 className="text-lg sm:text-xl font-bold text-white mb-2 leading-snug">{paper.title}</h3>
+              <p className="text-xs sm:text-sm text-[#00d9ff] font-medium mb-3">{paper.authors}</p>
 
-            <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-[#0a0a0a]/50 border border-gray-800 rounded">
-              <p className="text-gray-400 italic text-xs sm:text-sm">
-                &quot;Security testing is not about breaking systems—it&apos;s about building trust through transparency, precision, and unwavering ethical standards.&quot;
-              </p>
-            </div>
-          </motion.div>
-        </div>
+              <p className="text-sm sm:text-base text-gray-400 leading-relaxed mb-3">{paper.description}</p>
+
+              <div className="mb-4">
+                <h4 className="text-xs sm:text-sm font-semibold text-[#00d9ff] mb-1 sm:mb-2 flex items-center gap-2">
+                  <Target className="w-3 h-3 sm:w-4 sm:h-4" />
+                  MY TAKEAWAY
+                </h4>
+                <p className="text-xs sm:text-sm text-gray-400">{paper.takeaway}</p>
+              </div>
+
+              <div className="mt-auto flex flex-wrap items-center gap-3 pt-2">
+                <a
+                  href={paper.pdfUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#00ff41] text-black font-semibold rounded-lg hover:bg-[#00d936] transition-all text-sm"
+                >
+                  <FileText className="w-4 h-4" />
+                  View PDF
+                </a>
+                <a
+                  href={paper.pdfUrl}
+                  download
+                  className="inline-flex items-center gap-2 px-4 py-2.5 border-2 border-[#00d9ff] text-[#00d9ff] font-semibold rounded-lg hover:bg-[#00d9ff] hover:text-black transition-all text-sm"
+                >
+                  <Download className="w-4 h-4" />
+                  Download PDF
+                </a>
+                <a
+                  href={paper.paperUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-[#00d9ff] hover:text-[#00ff41] transition-colors text-xs sm:text-sm font-mono"
+                >
+                  Paper link
+                  <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />
+                </a>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
 }
+
 
 // Contact Section
 function ContactSection() {
@@ -1289,7 +1309,7 @@ function Footer() {
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0">
           <div className="text-center sm:text-left">
             <p className="text-gray-400 text-sm font-mono"><span className="text-[#00ff41]">&lt;</span>Gundu Hemanth<span className="text-[#00ff41]">/&gt;</span></p>
-            <p className="text-gray-600 text-xs mt-1">Cybersecurity Specialist | Penetration Tester</p>
+            <p className="text-gray-600 text-xs mt-1">Cybersecurity Specialist | Penetration Tester | AI Security Researcher</p>
           </div>
 
           <div className="flex space-x-5 sm:space-x-6">
@@ -1321,12 +1341,12 @@ function App() {
       <main>
         <HeroSection />
         <AboutSection />
+        <CertificationsSection />
         <SkillsSection />
         <ProjectsSection />
+        <ResearchSection />
         <HackathonsSection />
         <EducationSection />
-        <CertificationsSection />
-        <MethodologySection />
         <ContactSection />
       </main>
       <Footer />

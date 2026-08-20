@@ -5,7 +5,7 @@
 <h1 align="center">Gundu Hemanth — Cybersecurity Portfolio</h1>
 
 <p align="center">
-  <strong>A sleek, responsive portfolio &amp; <em>second brain</em> for a Cybersecurity Specialist &amp; Penetration Tester</strong>
+  <strong>A sleek, responsive portfolio &amp; <em>second brain</em> for a Cybersecurity Specialist, Penetration Tester &amp; AI Security Researcher</strong>
 </p>
 
 <p align="center">
@@ -56,12 +56,13 @@ The goal is a single, portable brain: one place for projects, proof of skill, an
 1. **Hero** — Animated intro with *View Projects*, *Contact Me*, and *Download Resume* CTAs
 2. **About** — Bio, TryHackMe profile card, and Core Philosophy pillars
 3. **Skills** — Categorised skill grid (Web App Security, Network Security, Offensive Security, Security Tools, Programming, ML/AI)
-4. **Projects** — Placeholder for upcoming security projects (add your own in `src/App.tsx`)
+4. **Projects** — Live builds including **Student Life OS (Cortex)** (a local-first productivity + Second Brain app) and **Aegis** (an AI red-teaming / LLM guardrail evaluation tool)
 5. **Experience** — GDG Core Member, IOTA Core Member, Pycon 2025, Abhisarga'26
 6. **Education** — B.Tech (Hons.) CSE @ IIIT Sri City
 7. **Certifications** — eLearnSecurity Junior Penetration Tester (eJPTv2)
-8. **Methodology & Ethics** — Six-phase pentesting methodology with an ethics commitment
-9. **Contact** — Formspree-powered form + social links
+8. **Ongoing Research** — AI safety papers I'm reading & reviewing (e.g. robustness against multi-turn jailbreaking attacks), with view/download links
+9. **Methodology & Ethics** — Six-phase pentesting methodology with an ethics commitment
+10. **Contact** — Formspree-powered form + social links
 
 ---
 
@@ -119,7 +120,8 @@ The optimised output is written to the `dist/` directory.
 ```
 ├── public/
 │   ├── favicon.svg         # Custom <GH/> SVG favicon
-│   └── resume.pdf          # Downloadable resume
+│   ├── resume.pdf          # Downloadable resume
+│   └── nbf-safety-steering.pdf  # Research paper (Ongoing Research section)
 ├── src/
 │   ├── components/ui/      # shadcn/ui primitives (button, card, dialog, etc.)
 │   ├── hooks/
