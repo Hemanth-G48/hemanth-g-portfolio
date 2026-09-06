@@ -308,21 +308,15 @@ function AboutSection() {
             className="bg-[#1a1a1a] border border-gray-800 rounded-2xl p-6 sm:p-8 lg:p-12 gradient-border"
           >
             <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-4 sm:mb-6">
-              I&apos;m a third-year <span className="text-[#00ff41] font-semibold">CSE student specializing in cybersecurity</span> with a focus on
-              offensive security. I have hands-on experience in <span className="text-[#00d9ff] font-semibold">penetration testing</span>, CTFs, and
-              <span className="text-[#00d9ff] font-semibold"> Agentic AI security research</span>. I hold the <span className="text-[#00ff41] font-semibold">eJPT certification</span> and am
-              further developing my web application security skills through HTB&apos;s CWES path.
+              Third-year CSE student passionate about <span className="text-[#00ff41] font-semibold">offensive security</span> and <span className="text-[#00d9ff] font-semibold">AI safety</span>. Certified eJPT with hands-on experience in <span className="text-[#00d9ff] font-semibold">penetration testing</span> and CTF competitions.
             </p>
 
             <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-4 sm:mb-6">
-              I am in the <span className="text-[#ff3864] font-semibold">Top 15 percent of TryHackMe</span> and have knowledge of
-              <span className="font-mono text-sm text-[#00ff41]"> Machine Learning</span> and <span className="font-mono text-sm text-[#00ff41]">Deep Learning</span>, with a growing interest in
-              AI security. I aim to apply and expand my offensive security skills through real-world challenges.
+              Developed open-source security tools including <span className="text-[#00ff41] font-semibold">Guardbound</span> (Neural Barrier Function for LLM safety) and <span className="text-[#00ff41] font-semibold">Aegis</span> (red-teaming framework for LLM guardrails). Active researcher in adversarial AI with published work on jailbreak detection.
             </p>
 
             <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-6 sm:mb-8">
-              My journey is driven by curiosity and a commitment to <span className="text-[#ff3864] font-semibold">ethical responsibility</span>.
-              I actively engage with platforms like TryHackMe and Hack The Box to sharpen my skills.
+              Seeking to apply offensive security skills in <span className="text-[#ff3864] font-semibold">high-impact security research</span>.
             </p>
 
             {/* TryHackMe Badge - Inline compact */}
@@ -334,7 +328,7 @@ function AboutSection() {
               className="mb-6 sm:mb-8"
             >
               <motion.a
-                href="https://tryhackme.com/p/1mth3prie5t"
+                href="https://tryhackme.com/p/hemanthg4488"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-[#212c42] hover:bg-[#2d3a56] border border-[#3b4d6b] text-white font-semibold rounded-lg transition-all"
@@ -435,19 +429,26 @@ function ProjectsSection() {
     inProgress?: boolean;
   }> = [
     {
-      title: 'Cortex',
-      type: 'In Progress',
-      typeColor: '#ffd93d',
-      description: 'A productivity application that helps students manage their academic and personal life in one place. It pairs a FastAPI backend with a React + TypeScript + Vite frontend, and is built around a powerful local-first Second Brain that ingests notes, documents, and course materials, embeds them offline with fastembed, and makes them searchable through semantic (vector) search, a knowledge graph, and AI tutoring.',
-      githubUrl: 'https://github.com/Hemanth-G48/Cortex',
-      inProgress: true
+      title: 'Guardbound',
+      type: 'AI Security',
+      typeColor: '#00ff41',
+      description: 'Developed a control-theoretic Q-filter using Neural Barrier Functions to proactively filter harmful multi-turn LLM queries. Trained dynamics models and safety predictor on attack datasets; reduced attack success rate while preserving model utility.',
+      githubUrl: 'https://github.com/Hemanth-G48/Guardbound'
     },
     {
       title: 'Aegis',
       type: 'AI Security Tool',
-      typeColor: '#00ff41',
-      description: 'An AI-powered red-teaming tool that uses multi-turn adversarial conversations to evaluate the safety of large language models (LLMs). Aegis employs a trust-vector-driven state machine with configurable drift strategies to systematically test model guardrails.',
+      typeColor: '#00d9ff',
+      description: 'Built an AI-powered red-teaming tool with trust-vector-driven state machine for evaluating LLM safety. Implemented 4 drift strategies and dual-judge architecture for systematic guardrail testing.',
       githubUrl: 'https://github.com/Hemanth-G48/Aegis'
+    },
+    {
+      title: 'Cortex',
+      type: 'Productivity',
+      typeColor: '#ffd93d',
+      description: 'Built a local-first knowledge base with offline semantic embeddings for notes, PDFs, and course materials. Implemented knowledge graph with concept linking, citation tracking, and personalized learning roadmaps.',
+      githubUrl: 'https://github.com/Hemanth-G48/Cortex',
+      inProgress: true
     }
   ];
 
