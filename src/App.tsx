@@ -255,7 +255,7 @@ function HeroSection() {
           <motion.div variants={fadeInUp} className="mt-12 sm:mt-16 flex justify-center space-x-6 sm:space-x-8">
             {[
               { href: 'https://github.com/Hemanth-G48', icon: Github, color: 'hover:text-[#00ff41]' },
-              { href: 'https://www.linkedin.com/in/Gundu-Hemanth', icon: Linkedin, color: 'hover:text-[#00d9ff]' },
+              { href: 'https://www.linkedin.com/in/hemanth-gundu-08aa46371', icon: Linkedin, color: 'hover:text-[#00d9ff]' },
               { href: 'mailto:hemanthg4488@gmail.com', icon: Mail, color: 'hover:text-[#ff3864]' },
             ].map((social, index) => (
               <motion.a
@@ -1001,7 +1001,7 @@ function ContactSection() {
             >
               {[
                 { icon: Mail, label: 'Email', value: 'hemanthg4488@gmail.com', href: 'mailto:hemanthg4488@gmail.com', color: '#00ff41' },
-                { icon: Linkedin, label: 'LinkedIn', value: 'linkedin.com/in/Gundu-Hemanth', href: 'https://www.linkedin.com/in/Gundu-Hemanth', color: '#00d9ff' },
+                { icon: Linkedin, label: 'LinkedIn', value: 'linkedin.com/in/hemanth-gundu-08aa46371', href: 'https://www.linkedin.com/in/hemanth-gundu-08aa46371', color: '#00d9ff' },
                 { icon: Github, label: 'GitHub', value: 'github.com/Hemanth-G48', href: 'https://github.com/Hemanth-G48', color: '#ff3864' }
               ].map((contact, index) => (
                 <motion.a
@@ -1115,7 +1115,7 @@ function Footer() {
           </div>
 
           <div className="flex space-x-5 sm:space-x-6">
-            {[{ href: 'https://github.com/Hemanth-G48', icon: Github, color: 'hover:text-[#00ff41]' }, { href: 'https://www.linkedin.com/in/Gundu-Hemanth', icon: Linkedin, color: 'hover:text-[#00d9ff]' }, { href: 'mailto:hemanthg4488@gmail.com', icon: Mail, color: 'hover:text-[#ff3864]' }].map((social, index) => (
+            {[{ href: 'https://github.com/Hemanth-G48', icon: Github, color: 'hover:text-[#00ff41]' }, { href: 'https://www.linkedin.com/in/hemanth-gundu-08aa46371', icon: Linkedin, color: 'hover:text-[#00d9ff]' }, { href: 'mailto:hemanthg4488@gmail.com', icon: Mail, color: 'hover:text-[#ff3864]' }].map((social, index) => (
               <motion.a key={index} href={social.href} target={social.href.startsWith('mailto') ? undefined : '_blank'} rel={social.href.startsWith('mailto') ? undefined : 'noopener noreferrer'} className={`text-gray-500 ${social.color} transition-colors`} whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}>
                 <social.icon className="w-5 h-5 sm:w-6 sm:h-6" />
               </motion.a>
